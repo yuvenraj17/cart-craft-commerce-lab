@@ -1,7 +1,7 @@
 -- Insert 20 Sample Perfume Products
 
 INSERT INTO public.products (name, description, price, category_id, image_url, brand, rating, stock_quantity, is_active) VALUES
-('Eau de Parfum Sensuelle', 'A captivating floral fragrance with notes of jasmine, rose, and vanilla.', 75.50, NULL, 'https://www.dior.com/dw/image/v2/BGXS_PRD/on/demandware.static/-/Sites-master_dior/default/dwfebdb5ba/Y0996347/Y0996347_C099600762_E01_ZHC.jpg?sw=1280', 'Chanel', 4.5, 120, true),
+('Eau de Parfum Sensuelle', 'A captivating floral fragrance with notes of jasmine, rose, and vanilla.', 75.50, NULL, 'https://beautypert.com/wp-content/uploads/2023/08/top-10-best-victoria-secret-perfume-header.jpg', 'Chanel', 4.5, 120, true),
 ('Ocean Breeze for Men', 'A fresh aquatic scent with hints of citrus and cedarwood, perfect for daily wear.', 60.00, NULL, 'https://example.com/images/perfume_02.jpg', 'Davidoff', 4.2, 150, true),
 ('Midnight Bloom', 'An intense and mysterious oriental perfume with orchid, spice, and dark chocolate notes.', 95.00, NULL, 'https://example.com/images/perfume_03.jpg', 'Tom Ford', 4.8, 80, true),
 ('Citrus Grove Unisex', 'A vibrant and uplifting citrus blend of bergamot, grapefruit, and neroli.', 55.75, NULL, 'https://example.com/images/perfume_04.jpg', 'Jo Malone', 4.0, 200, true),

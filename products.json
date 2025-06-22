@@ -1,10 +1,10 @@
 [
   {
-    "name": "Eau de Parfum Sensuelle",
-    "description": "A captivating floral fragrance with notes of jasmine, rose, and vanilla.",
-    "price": 75.50,
-    "category_id": null,
-    "image_url": "https://www.dior.com/dw/image/v2/BGXS_PRD/on/demandware.static/-/Sites-master_dior/default/dwfebdb5ba/Y0996347/Y0996347_C099600762_E01_ZHC.jpg?sw=1280",
+      "name": "Eau de Parfum Sensuelle",
+      "description": "A captivating floral fragrance with notes of jasmine, rose, and vanilla.",
+      "price": 75.50,
+      "category_id": null,
+      "image_url": "https://beautypert.com/wp-content/uploads/2023/08/top-10-best-victoria-secret-perfume-header.jpg",
     "brand": "Chanel",
     "rating": 4.5,
     "stock_quantity": 120,
