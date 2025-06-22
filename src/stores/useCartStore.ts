@@ -55,10 +55,17 @@ export const useCartStore = create<CartState>((set, get) => ({
   
   addToCart: async (productId: string, quantity = 1) => {
     try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error('User not authenticated');
+
       const { error } = await supabase
         .from('cart_items')
         .upsert(
-          { product_id: productId, quantity },
+          { 
+            product_id: productId, 
+            quantity,
+            user_id: user.id 
+          },
           { onConflict: 'user_id,product_id' }
         );
       
