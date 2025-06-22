@@ -118,7 +118,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Parfumerie</h1>
+              <h1 className="text-3xl font-bold text-gray-900">Shains Spark</h1>
               <p className="text-gray-600">Discover Your Signature Scent</p>
             </div>
             <div className="flex gap-4">
