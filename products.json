@@ -1,0 +1,222 @@
+[
+  {
+    "name": "Eau de Parfum Sensuelle",
+    "description": "A captivating floral fragrance with notes of jasmine, rose, and vanilla.",
+    "price": 75.50,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_01.jpg",
+    "brand": "Chanel",
+    "rating": 4.5,
+    "stock_quantity": 120,
+    "is_active": true
+  },
+  {
+    "name": "Ocean Breeze for Men",
+    "description": "A fresh aquatic scent with hints of citrus and cedarwood, perfect for daily wear.",
+    "price": 60.00,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_02.jpg",
+    "brand": "Davidoff",
+    "rating": 4.2,
+    "stock_quantity": 150,
+    "is_active": true
+  },
+  {
+    "name": "Midnight Bloom",
+    "description": "An intense and mysterious oriental perfume with orchid, spice, and dark chocolate notes.",
+    "price": 95.00,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_03.jpg",
+    "brand": "Tom Ford",
+    "rating": 4.8,
+    "stock_quantity": 80,
+    "is_active": true
+  },
+  {
+    "name": "Citrus Grove Unisex",
+    "description": "A vibrant and uplifting citrus blend of bergamot, grapefruit, and neroli.",
+    "price": 55.75,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_04.jpg",
+    "brand": "Jo Malone",
+    "rating": 4.0,
+    "stock_quantity": 200,
+    "is_active": true
+  },
+  {
+    "name": "Velvet Oud",
+    "description": "A luxurious and warm fragrance featuring rich oud, amber, and soft rose petals.",
+    "price": 120.00,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_05.jpg",
+    "brand": "Dior",
+    "rating": 4.6,
+    "stock_quantity": 65,
+    "is_active": true
+  },
+  {
+    "name": "Gentleman's Reserve",
+    "description": "A classic woody aromatic fragrance for men with notes of vetiver, sandalwood, and leather.",
+    "price": 88.20,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_06.jpg",
+    "brand": "Creed",
+    "rating": 4.9,
+    "stock_quantity": 90,
+    "is_active": true
+  },
+  {
+    "name": "Summer Lily",
+    "description": "A light and airy floral scent with lily of the valley, white musk, and pear.",
+    "price": 49.99,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_07.jpg",
+    "brand": "Lancôme",
+    "rating": 3.9,
+    "stock_quantity": 110,
+    "is_active": true
+  },
+  {
+    "name": "Spiced Amber",
+    "description": "A warm and inviting fragrance with notes of amber, cinnamon, and tonka bean.",
+    "price": 72.00,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_08.jpg",
+    "brand": "Yves Saint Laurent",
+    "rating": 4.3,
+    "stock_quantity": 130,
+    "is_active": true
+  },
+  {
+    "name": "Aqua Marine Fresh",
+    "description": "A clean and invigorating unisex scent inspired by the sea breeze and coastal herbs.",
+    "price": 65.50,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_09.jpg",
+    "brand": "Acqua di Parma",
+    "rating": 4.1,
+    "stock_quantity": 160,
+    "is_active": true
+  },
+  {
+    "name": "Rose Noir Femme",
+    "description": "An elegant and sophisticated dark rose fragrance with patchouli and blackcurrant.",
+    "price": 105.00,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_10.jpg",
+    "brand": "Guerlain",
+    "rating": 4.7,
+    "stock_quantity": 75,
+    "is_active": true
+  },
+  {
+    "name": "Vanilla Sky Dream",
+    "description": "A sweet and comforting gourmand fragrance with vanilla bean, caramel, and musk.",
+    "price": 58.00,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_11.jpg",
+    "brand": "Ariana Grande",
+    "rating": 3.8,
+    "stock_quantity": 180,
+    "is_active": true
+  },
+  {
+    "name": "Sport Extreme Homme",
+    "description": "A dynamic and energetic citrus-woody fragrance for the active man.",
+    "price": 69.95,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_12.jpg",
+    "brand": "Hugo Boss",
+    "rating": 4.4,
+    "stock_quantity": 100,
+    "is_active": true
+  },
+  {
+    "name": "Enchanted Forest",
+    "description": "A mystical woody chypre with notes of oakmoss, bergamot, and wild berries.",
+    "price": 85.00,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_13.jpg",
+    "brand": "Byredo",
+    "rating": 4.5,
+    "stock_quantity": 95,
+    "is_active": true
+  },
+  {
+    "name": "White Tea Serenity",
+    "description": "A calming and delicate fragrance with white tea, freesia, and ambrette seed.",
+    "price": 53.25,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_14.jpg",
+    "brand": "Elizabeth Arden",
+    "rating": 3.7,
+    "stock_quantity": 140,
+    "is_active": true
+  },
+  {
+    "name": "Leather & Smoke",
+    "description": "A bold and captivating unisex fragrance with notes of leather, tobacco, and birch tar.",
+    "price": 110.00,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_15.jpg",
+    "brand": "Le Labo",
+    "rating": 4.6,
+    "stock_quantity": 70,
+    "is_active": true
+  },
+  {
+    "name": "Island Hibiscus",
+    "description": "A tropical floral fruity fragrance with hibiscus, coconut water, and mango.",
+    "price": 62.80,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_16.jpg",
+    "brand": "Estée Lauder",
+    "rating": 4.0,
+    "stock_quantity": 125,
+    "is_active": true
+  },
+  {
+    "name": "Black Pepper & Cedar",
+    "description": "A spicy and woody masculine scent with black pepper, cedarwood, and cardamom.",
+    "price": 78.00,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_17.jpg",
+    "brand": "Armani",
+    "rating": 4.3,
+    "stock_quantity": 115,
+    "is_active": true
+  },
+  {
+    "name": "Peony Blush Romance",
+    "description": "A soft and romantic floral fragrance centered around peony, with hints of apple and suede.",
+    "price": 70.00,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_18.jpg",
+    "brand": "Viktor & Rolf",
+    "rating": 4.2,
+    "stock_quantity": 105,
+    "is_active": true
+  },
+  {
+    "name": "Green Fig & Vetiver",
+    "description": "A sophisticated green fragrance with notes of fig leaf, vetiver, and sandalwood.",
+    "price": 92.50,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_19.jpg",
+    "brand": "Diptyque",
+    "rating": 4.7,
+    "stock_quantity": 85,
+    "is_active": true
+  },
+  {
+    "name": "Golden Nectar Elixir",
+    "description": "A rich and opulent amber floral fragrance with honey, jasmine, and benzoin.",
+    "price": 130.00,
+    "category_id": null,
+    "image_url": "https://example.com/images/perfume_20.jpg",
+    "brand": "Bvlgari",
+    "rating": 4.8,
+    "stock_quantity": 60,
+    "is_active": true
+  }
+]
