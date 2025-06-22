@@ -75,7 +75,7 @@ const Index = () => {
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Premium Perfume Collection
+            Premium Perfume 
           </h2>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
             Explore our curated selection of luxury fragrances from the world's finest perfume houses
