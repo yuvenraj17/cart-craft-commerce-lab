@@ -1,52 +1,116 @@
 
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Star, Heart, ShoppingCart } from "lucide-react";
+import { Star, Heart, ShoppingCart, User, LogOut } from "lucide-react";
+import { AuthModal } from "@/components/AuthModal";
+import { CartSidebar } from "@/components/CartSidebar";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { useCartStore } from "@/stores/useCartStore";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
-const perfumes = [
-  {
-    id: 1,
-    name: "Midnight Rose",
-    brand: "Luxe Parfums",
-    price: 89.99,
-    rating: 4.8,
-    description: "A sophisticated blend of dark roses and vanilla with hints of bergamot",
-    image: `https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=300&h=400&fit=crop`,
-    category: "Floral"
-  },
-  {
-    id: 2,
-    name: "Ocean Breeze",
-    brand: "Aqua Scents",
-    price: 65.99,
-    rating: 4.6,
-    description: "Fresh marine notes with citrus and white musk for a clean, crisp scent",
-    image: `https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=300&h=400&fit=crop`,
-    category: "Fresh"
-  },
-  {
-    id: 3,
-    name: "Golden Amber",
-    brand: "Oriental House",
-    price: 124.99,
-    rating: 4.9,
-    description: "Warm amber and sandalwood with touches of jasmine and patchouli",
-    image: `https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=300&h=400&fit=crop`,
-    category: "Oriental"
-  },
-  {
-    id: 4,
-    name: "Citrus Burst",
-    brand: "Fresh & Co",
-    price: 45.99,
-    rating: 4.4,
-    description: "Energizing blend of lemon, grapefruit, and mint with cedar base notes",
-    image: `https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=300&h=400&fit=crop`,
-    category: "Citrus"
-  }
-];
+interface Product {
+  id: string;
+  name: string;
+  brand: string;
+  price: number;
+  rating: number;
+  description: string;
+  image_url: string;
+  category: {
+    name: string;
+  };
+}
 
 const Index = () => {
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { user, signOut, initialize } = useAuthStore();
+  const { fetchCartItems, addToCart, getTotalItems } = useCartStore();
+  const { toast } = useToast();
+
+  useEffect(() => {
+    initialize();
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      fetchCartItems();
+    }
+  }, [user]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('products')
+        .select(`
+          id,
+          name,
+          brand,
+          price,
+          rating,
+          description,
+          image_url,
+          category:categories(name)
+        `)
+        .eq('is_active', true);
+
+      if (error) throw error;
+      setProducts(data || []);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleAddToCart = async (productId: string) => {
+    if (!user) {
+      setAuthModalOpen(true);
+      return;
+    }
+
+    try {
+      await addToCart(productId);
+      toast({
+        title: "Added to cart!",
+        description: "Item has been added to your cart.",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to add item to cart.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      toast({
+        title: "Signed out",
+        description: "You have been signed out successfully.",
+      });
+    } catch (error) {
+      console.error('Sign out error:', error);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-lg">Loading...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
       {/* Header */}
@@ -62,10 +126,32 @@ const Index = () => {
                 <Heart className="h-4 w-4 mr-2" />
                 Wishlist
               </Button>
-              <Button size="sm">
-                <ShoppingCart className="h-4 w-4 mr-2" />
-                Cart (0)
-              </Button>
+              
+              {user ? (
+                <>
+                  <CartSidebar>
+                    <Button size="sm">
+                      <ShoppingCart className="h-4 w-4 mr-2" />
+                      Cart ({getTotalItems()})
+                    </Button>
+                  </CartSidebar>
+                  <Button variant="outline" size="sm" onClick={handleSignOut}>
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sign Out
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button size="sm" variant="outline">
+                    <ShoppingCart className="h-4 w-4 mr-2" />
+                    Cart (0)
+                  </Button>
+                  <Button size="sm" onClick={() => setAuthModalOpen(true)}>
+                    <User className="h-4 w-4 mr-2" />
+                    Sign In
+                  </Button>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -75,7 +161,7 @@ const Index = () => {
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Premium Perfume 
+            Premium Perfume Collection
           </h2>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
             Explore our curated selection of luxury fragrances from the world's finest perfume houses
@@ -87,12 +173,12 @@ const Index = () => {
       <section className="py-8">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {perfumes.map((perfume) => (
-              <Card key={perfume.id} className="group hover:shadow-lg transition-shadow duration-300">
+            {products.map((product) => (
+              <Card key={product.id} className="group hover:shadow-lg transition-shadow duration-300">
                 <div className="relative overflow-hidden rounded-t-lg">
                   <img 
-                    src={perfume.image} 
-                    alt={perfume.name}
+                    src={product.image_url} 
+                    alt={product.name}
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute top-3 right-3">
@@ -102,34 +188,38 @@ const Index = () => {
                   </div>
                   <div className="absolute top-3 left-3">
                     <span className="bg-purple-600 text-white px-2 py-1 rounded-full text-xs font-medium">
-                      {perfume.category}
+                      {product.category?.name}
                     </span>
                   </div>
                 </div>
                 
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-lg">{perfume.name}</CardTitle>
+                    <CardTitle className="text-lg">{product.name}</CardTitle>
                     <div className="flex items-center gap-1">
                       <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      <span className="text-sm font-medium">{perfume.rating}</span>
+                      <span className="text-sm font-medium">{product.rating}</span>
                     </div>
                   </div>
                   <CardDescription className="text-sm text-gray-500">
-                    {perfume.brand}
+                    {product.brand}
                   </CardDescription>
                 </CardHeader>
 
                 <CardContent className="pt-0">
                   <p className="text-sm text-gray-600 mb-4 line-clamp-2">
-                    {perfume.description}
+                    {product.description}
                   </p>
                   
                   <div className="flex items-center justify-between">
                     <span className="text-2xl font-bold text-purple-600">
-                      ${perfume.price}
+                      ${product.price}
                     </span>
-                    <Button size="sm" className="bg-purple-600 hover:bg-purple-700">
+                    <Button 
+                      size="sm" 
+                      className="bg-purple-600 hover:bg-purple-700"
+                      onClick={() => handleAddToCart(product.id)}
+                    >
                       <ShoppingCart className="h-4 w-4 mr-2" />
                       Add to Cart
                     </Button>
@@ -153,6 +243,8 @@ const Index = () => {
           </Button>
         </div>
       </footer>
+
+      <AuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
     </div>
   );
 };
