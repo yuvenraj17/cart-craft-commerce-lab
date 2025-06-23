@@ -6,7 +6,7 @@ INSERT INTO public.products (name, description, price, category_id, image_url, b
 ('Midnight Bloom', 'An intense and mysterious oriental perfume with orchid, spice, and dark chocolate notes.', 95.00, NULL, 'https://example.com/images/perfume_03.jpg', 'Tom Ford', 4.8, 80, true),
 ('Citrus Grove Unisex', 'A vibrant and uplifting citrus blend of bergamot, grapefruit, and neroli.', 55.75, NULL, 'https://example.com/images/perfume_04.jpg', 'Jo Malone', 4.0, 200, true),
 ('Velvet Oud', 'A luxurious and warm fragrance featuring rich oud, amber, and soft rose petals.', 120.00, NULL, 'https://example.com/images/perfume_05.jpg', 'Dior', 4.6, 65, true),
-('Gentleman''s Reserve', 'A classic woody aromatic fragrance for men with notes of vetiver, sandalwood, and leather.', 88.20, NULL, 'https://example.com/images/perfume_06.jpg', 'Creed', 4.9, 90, true),
+('Gentleman', 'A classic woody aromatic fragrance for men with notes of vetiver, sandalwood, and leather.', 88.20, NULL, 'https://example.com/images/perfume_06.jpg', 'Creed', 4.9, 90, true),
 ('Summer Lily', 'A light and airy floral scent with lily of the valley, white musk, and pear.', 49.99, NULL, 'https://example.com/images/perfume_07.jpg', 'Lancôme', 3.9, 110, true),
 ('Spiced Amber', 'A warm and inviting fragrance with notes of amber, cinnamon, and tonka bean.', 72.00, NULL, 'https://example.com/images/perfume_08.jpg', 'Yves Saint Laurent', 4.3, 130, true),
 ('Aqua Marine Fresh', 'A clean and invigorating unisex scent inspired by the sea breeze and coastal herbs.', 65.50, NULL, 'https://example.com/images/perfume_09.jpg', 'Acqua di Parma', 4.1, 160, true),
