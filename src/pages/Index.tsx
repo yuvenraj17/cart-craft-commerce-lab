@@ -287,7 +287,7 @@ const Index = () => {
                     </span>
                     <Button 
                       size="sm" 
-                      className="bg-purple-600 hover:bg-purple-700"
+                      className="bg-rose-500 hover:bg-cyan-500"
                       onClick={() => handleAddToCart(product.id)}
                     >
                       <ShoppingCart className="h-4 w-4 mr-2" />
