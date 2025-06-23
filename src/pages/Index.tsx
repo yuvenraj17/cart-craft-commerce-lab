@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Star, Heart, ShoppingCart, User, LogOut } from "lucide-react";
 import { AuthModal } from "@/components/AuthModal";
 import { CartSidebar } from "@/components/CartSidebar";
+import { GenderFilter } from "@/components/GenderFilter";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useCartStore } from "@/stores/useCartStore";
 import { supabase } from "@/integrations/supabase/client";
@@ -18,6 +19,7 @@ interface Product {
   rating: number;
   description: string;
   image_url: string;
+  gender: number;
   category: {
     name: string;
   };
@@ -27,6 +29,7 @@ const Index = () => {
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedGender, setSelectedGender] = useState<number | null>(null);
   const { user, signOut, initialize } = useAuthStore();
   const { fetchCartItems, addToCart, getTotalItems } = useCartStore();
   const { toast } = useToast();
@@ -43,11 +46,11 @@ const Index = () => {
 
   useEffect(() => {
     fetchProducts();
-  }, []);
+  }, [selectedGender]);
 
   const fetchProducts = async () => {
     try {
-      const { data, error } = await supabase
+      let query = supabase
         .from('products')
         .select(`
           id,
@@ -57,9 +60,16 @@ const Index = () => {
           rating,
           description,
           image_url,
+          gender,
           category:categories(name)
         `)
         .eq('is_active', true);
+
+      if (selectedGender !== null) {
+        query = query.eq('gender', selectedGender);
+      }
+
+      const { data, error } = await query;
 
       if (error) throw error;
       setProducts(data || []);
@@ -172,6 +182,11 @@ const Index = () => {
       {/* Products Grid */}
       <section className="py-8">
         <div className="max-w-7xl mx-auto px-4">
+          <GenderFilter
+            selectedGender={selectedGender}
+            onGenderChange={setSelectedGender}
+          />
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {products.map((product) => (
               <Card key={product.id} className="group hover:shadow-lg transition-shadow duration-300">
