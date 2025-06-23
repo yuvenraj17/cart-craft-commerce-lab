@@ -14,7 +14,7 @@ UPDATE public.products SET gender = 2 WHERE name = 'Golden Nectar Elixir';
 
 -- Male perfumes
 UPDATE public.products SET gender = 1 WHERE name = 'Ocean Breeze for Men';
-UPDATE public.products SET gender = 1 WHERE name = 'Gentleman''s Reserve';
+UPDATE public.products SET gender = 1 WHERE name = 'Gentleman';
 UPDATE public.products SET gender = 1 WHERE name = 'Sport Extreme Homme';
 UPDATE public.products SET gender = 1 WHERE name = 'Black Pepper & Cedar';
 
