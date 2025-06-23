@@ -28,6 +28,8 @@ const exchangeRates: Record<string, number> = {
   JPY: 110,
   INR: 74,
   BRL: 5.2,
+  MYR: 4.28, 
+  SGD: 1.33,  
 };
 
 export const CurrencyProvider = ({ children }: { children: ReactNode }) => {

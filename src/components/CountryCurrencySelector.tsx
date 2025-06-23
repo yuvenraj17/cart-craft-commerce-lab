@@ -25,6 +25,8 @@ const countries: CountryCurrency[] = [
   { country: "Japan", currency: "JPY", symbol: "¥", flag: "🇯🇵" },
   { country: "India", currency: "INR", symbol: "₹", flag: "🇮🇳" },
   { country: "Brazil", currency: "BRL", symbol: "R$", flag: "🇧🇷" },
+  { country: "Malaysia", currency: "MYR", symbol: "RM", flag: "🇲🇾" },
+  { country: "Singapore", currency: "SGD", symbol: "S$", flag: "🇸🇬" },
 ];
 
 interface CountryCurrencySelectorProps {
