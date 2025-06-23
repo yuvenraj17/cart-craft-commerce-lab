@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,6 +6,8 @@ import { AuthModal } from "@/components/AuthModal";
 import { CartSidebar } from "@/components/CartSidebar";
 import { WishlistSidebar } from "@/components/WishlistSidebar";
 import { GenderFilter } from "@/components/GenderFilter";
+import { CountryCurrencySelector } from "@/components/CountryCurrencySelector";
+import { useCurrency } from "@/contexts/CurrencyContext";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useCartStore } from "@/stores/useCartStore";
 import { useWishlistStore } from "@/stores/useWishlistStore";
@@ -41,6 +42,7 @@ const Index = () => {
     isInWishlist, 
     getTotalItems: getWishlistTotal 
   } = useWishlistStore();
+  const { selectedCountry, setSelectedCountry, formatPrice } = useCurrency();
   const { toast } = useToast();
 
   useEffect(() => {
@@ -170,7 +172,11 @@ const Index = () => {
               <h1 className="text-3xl font-bold text-gray-900">Shains Spark</h1>
               <p className="text-gray-600">Discover Your Signature Scent</p>
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-4 items-center">
+              <CountryCurrencySelector
+                selectedCountry={selectedCountry}
+                onCountryChange={setSelectedCountry}
+              />
               {user ? (
                 <>
                   <WishlistSidebar>
@@ -283,7 +289,7 @@ const Index = () => {
                   
                   <div className="flex items-center justify-between">
                     <span className="text-2xl font-bold text-purple-600">
-                      ${product.price}
+                      {formatPrice(product.price)}
                     </span>
                     <Button 
                       size="sm" 
