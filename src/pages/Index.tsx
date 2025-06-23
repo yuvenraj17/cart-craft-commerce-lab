@@ -5,9 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Star, Heart, ShoppingCart, User, LogOut } from "lucide-react";
 import { AuthModal } from "@/components/AuthModal";
 import { CartSidebar } from "@/components/CartSidebar";
+import { WishlistSidebar } from "@/components/WishlistSidebar";
 import { GenderFilter } from "@/components/GenderFilter";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useCartStore } from "@/stores/useCartStore";
+import { useWishlistStore } from "@/stores/useWishlistStore";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -31,7 +33,14 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
   const [selectedGender, setSelectedGender] = useState<number | null>(null);
   const { user, signOut, initialize } = useAuthStore();
-  const { fetchCartItems, addToCart, getTotalItems } = useCartStore();
+  const { fetchCartItems, addToCart, getTotalItems: getCartTotal } = useCartStore();
+  const { 
+    fetchWishlistItems, 
+    addToWishlist, 
+    removeFromWishlist, 
+    isInWishlist, 
+    getTotalItems: getWishlistTotal 
+  } = useWishlistStore();
   const { toast } = useToast();
 
   useEffect(() => {
@@ -41,6 +50,7 @@ const Index = () => {
   useEffect(() => {
     if (user) {
       fetchCartItems();
+      fetchWishlistItems();
     }
   }, [user]);
 
@@ -101,6 +111,35 @@ const Index = () => {
     }
   };
 
+  const handleWishlistToggle = async (productId: string) => {
+    if (!user) {
+      setAuthModalOpen(true);
+      return;
+    }
+
+    try {
+      if (isInWishlist(productId)) {
+        await removeFromWishlist(productId);
+        toast({
+          title: "Removed from wishlist",
+          description: "Item has been removed from your wishlist.",
+        });
+      } else {
+        await addToWishlist(productId);
+        toast({
+          title: "Added to wishlist!",
+          description: "Item has been added to your wishlist.",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to update wishlist.",
+        variant: "destructive",
+      });
+    }
+  };
+
   const handleSignOut = async () => {
     try {
       await signOut();
@@ -132,17 +171,18 @@ const Index = () => {
               <p className="text-gray-600">Discover Your Signature Scent</p>
             </div>
             <div className="flex gap-4">
-              <Button variant="outline" size="sm">
-                <Heart className="h-4 w-4 mr-2" />
-                Wishlist
-              </Button>
-              
               {user ? (
                 <>
+                  <WishlistSidebar>
+                    <Button variant="outline" size="sm">
+                      <Heart className="h-4 w-4 mr-2" />
+                      Wishlist ({getWishlistTotal()})
+                    </Button>
+                  </WishlistSidebar>
                   <CartSidebar>
                     <Button size="sm">
                       <ShoppingCart className="h-4 w-4 mr-2" />
-                      Cart ({getTotalItems()})
+                      Cart ({getCartTotal()})
                     </Button>
                   </CartSidebar>
                   <Button variant="outline" size="sm" onClick={handleSignOut}>
@@ -152,6 +192,10 @@ const Index = () => {
                 </>
               ) : (
                 <>
+                  <Button variant="outline" size="sm">
+                    <Heart className="h-4 w-4 mr-2" />
+                    Wishlist (0)
+                  </Button>
                   <Button size="sm" variant="outline">
                     <ShoppingCart className="h-4 w-4 mr-2" />
                     Cart (0)
@@ -197,8 +241,19 @@ const Index = () => {
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute top-3 right-3">
-                    <Button size="sm" variant="outline" className="bg-white/80 backdrop-blur-sm">
-                      <Heart className="h-4 w-4" />
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="bg-white/80 backdrop-blur-sm"
+                      onClick={() => handleWishlistToggle(product.id)}
+                    >
+                      <Heart 
+                        className={`h-4 w-4 ${
+                          user && isInWishlist(product.id) 
+                            ? 'fill-red-500 text-red-500' 
+                            : ''
+                        }`} 
+                      />
                     </Button>
                   </div>
                   <div className="absolute top-3 left-3">
