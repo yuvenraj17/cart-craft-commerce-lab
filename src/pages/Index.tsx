@@ -231,7 +231,7 @@ const Index = () => {
 
       {/* Products Grid */}
       <section className="py-8">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4 hover:transition duration-150 ease-in-out hover:bg-purple-100">
           <GenderFilter
             selectedGender={selectedGender}
             onGenderChange={setSelectedGender}
