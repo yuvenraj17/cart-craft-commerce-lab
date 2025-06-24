@@ -6,6 +6,7 @@ import { AuthModal } from "@/components/AuthModal";
 import { CartSidebar } from "@/components/CartSidebar";
 import { WishlistSidebar } from "@/components/WishlistSidebar";
 import { GenderFilter } from "@/components/GenderFilter";
+import { GenderModelDisplay } from "@/components/GenderModelDisplay";
 import { CountryCurrencySelector } from "@/components/CountryCurrencySelector";
 import { useCurrency } from "@/contexts/CurrencyContext";
 import { useAuthStore } from "@/stores/useAuthStore";
@@ -163,7 +164,10 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cyan-100 to-pink-50">
+    <div className="min-h-screen bg-gradient-to-br from-cyan-100 to-pink-50 relative">
+      {/* Gender Model Display */}
+      <GenderModelDisplay selectedGender={selectedGender} />
+
       {/* Header */}
       <header className="bg-black shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 py-6">
