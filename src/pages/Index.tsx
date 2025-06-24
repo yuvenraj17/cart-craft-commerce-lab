@@ -163,14 +163,14 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
+    <div className="min-h-screen bg-gradient-to-br from-cyan-100 to-pink-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-black shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Shains Spark</h1>
-              <p className="text-gray-600">Discover Your Signature Scent</p>
+              <h1 className="text-3xl font-bold text-cyan-300">Shains Spark</h1>
+              <p className="text-amber-700">Discover Your Signature Scent</p>
             </div>
             <div className="flex gap-4 items-center">
               <CountryCurrencySelector
@@ -180,18 +180,18 @@ const Index = () => {
               {user ? (
                 <>
                   <WishlistSidebar>
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" size="sm" className="text-purple-600 border-purple-600 hover:bg-cyan-300 hover:text-black transition-colors duration-200">
                       <Heart className="h-4 w-4 mr-2" />
                       Wishlist ({getWishlistTotal()})
                     </Button>
                   </WishlistSidebar>
                   <CartSidebar>
-                    <Button size="sm">
+                    <Button variant="outline" size="sm" className="text-purple-600 border-purple-600 hover:bg-cyan-300 hover:text-black transition-colors duration-200">
                       <ShoppingCart className="h-4 w-4 mr-2" />
                       Cart ({getCartTotal()})
                     </Button>
                   </CartSidebar>
-                  <Button variant="outline" size="sm" onClick={handleSignOut}>
+                  <Button variant="outline" size="sm" className="text-purple-600 border-purple-600 hover:bg-pink-300 hover:text-black transition-colors duration-200" onClick={handleSignOut}>
                     <LogOut className="h-4 w-4 mr-2" />
                     Sign Out
                   </Button>
@@ -244,7 +244,7 @@ const Index = () => {
                   <img 
                     src={product.image_url} 
                     alt={product.name}
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-64 object-cover group-hover:scale-105 brightness-3000"
                   />
                   <div className="absolute top-3 right-3">
                     <Button 
