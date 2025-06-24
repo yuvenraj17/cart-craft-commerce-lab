@@ -8,6 +8,7 @@ import { useWishlistStore } from "@/stores/useWishlistStore";
 import { useCartStore } from "@/stores/useCartStore";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useToast } from "@/hooks/use-toast";
+import { useCurrency } from "@/contexts/CurrencyContext"; // Added import
 
 interface WishlistSidebarProps {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ export const WishlistSidebar = ({ children }: WishlistSidebarProps) => {
   const { addToCart } = useCartStore();
   const { user } = useAuthStore();
   const { toast } = useToast();
+  const { formatPrice } = useCurrency(); // Added useCurrency hook
 
   const handleAddToCart = async (productId: string) => {
     if (!user) return;
@@ -86,7 +88,8 @@ export const WishlistSidebar = ({ children }: WishlistSidebarProps) => {
                     <div className="flex-1">
                       <h4 className="font-medium">{item.product.name}</h4>
                       <p className="text-sm text-gray-500">{item.product.brand}</p>
-                      <p className="text-lg font-bold text-purple-600">${item.product.price}</p>
+                      {/* Used formatPrice to display the price */}
+                      <p className="text-lg font-bold text-purple-600">{formatPrice(item.product.price)}</p>
                     </div>
                     <div className="flex flex-col gap-2">
                       <Button
