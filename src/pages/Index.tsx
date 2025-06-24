@@ -85,12 +85,26 @@ const Index = () => {
       const { data, error } = await query;
 
       if (error) throw error;
+      
+      console.log('Fetched products:', data);
+      data?.forEach(product => {
+        console.log(`Product ${product.name} image URL: ${product.image_url}`);
+      });
+      
       setProducts(data || []);
     } catch (error) {
       console.error('Error fetching products:', error);
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleImageError = (productName: string, imageUrl: string) => {
+    console.error(`Failed to load product image for ${productName}: ${imageUrl}`);
+  };
+
+  const handleImageLoad = (productName: string, imageUrl: string) => {
+    console.log(`Successfully loaded product image for ${productName}: ${imageUrl}`);
   };
 
   const handleAddToCart = async (productId: string) => {
@@ -249,6 +263,8 @@ const Index = () => {
                     src={product.image_url} 
                     alt={product.name}
                     className="w-full h-64 object-cover group-hover:scale-105 brightness-3000"
+                    onError={() => handleImageError(product.name, product.image_url)}
+                    onLoad={() => handleImageLoad(product.name, product.image_url)}
                   />
                   <div className="absolute top-3 right-3">
                     <Button 
