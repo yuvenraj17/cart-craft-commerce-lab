@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { ShoppingCart, Plus, Minus, Trash2 } from 'lucide-react';
 import { useCartStore } from '@/stores/useCartStore';
 import { useAuthStore } from '@/stores/useAuthStore';
+import { useCurrency } from "@/contexts/CurrencyContext";
 
 interface CartSidebarProps {
   children: React.ReactNode;
@@ -14,6 +15,7 @@ export const CartSidebar = ({ children }: CartSidebarProps) => {
   const [open, setOpen] = useState(false);
   const { items, updateQuantity, removeFromCart, getTotalPrice, getTotalItems } = useCartStore();
   const { user } = useAuthStore();
+  const { formatPrice } = useCurrency();
 
   if (!user) {
     return <>{children}</>;
@@ -52,7 +54,7 @@ export const CartSidebar = ({ children }: CartSidebarProps) => {
                   <div className="flex-1">
                     <h4 className="font-medium text-sm">{item.product.name}</h4>
                     <p className="text-xs text-gray-600">{item.product.brand}</p>
-                    <p className="font-semibold text-purple-600">${item.product.price}</p>
+                    <p className="font-semibold text-purple-600">{formatPrice(item.product.price)}</p>
                   </div>
                   <div className="flex flex-col items-center gap-2">
                     <div className="flex items-center gap-1">
@@ -93,7 +95,7 @@ export const CartSidebar = ({ children }: CartSidebarProps) => {
               <div className="flex justify-between items-center">
                 <span className="font-semibold">Total:</span>
                 <span className="font-bold text-lg text-purple-600">
-                  ${getTotalPrice().toFixed(2)}
+                  {formatPrice(getTotalPrice())}
                 </span>
               </div>
               <Button className="w-full" size="lg">
