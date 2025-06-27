@@ -22,7 +22,7 @@ export const GenderModelDisplay = ({ selectedGender }: GenderModelDisplayProps) 
       setImageUrl('/Model/Women.jpg');
     } else {
       console.log('No gender selected, hiding image');
-      setImageUrl(null);
+      setImageUrl('/Model/Couple.jpg');
     }
   }, [selectedGender]);
 
