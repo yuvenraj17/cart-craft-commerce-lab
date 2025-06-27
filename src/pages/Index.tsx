@@ -303,12 +303,12 @@ const Index = () => {
                 </CardHeader>
 
                 <CardContent className="pt-0">
-                  <p className="text-sm text-black-600 mb-4 line-clamp-2 hover:text-blue-500">
+                  <p className="text-sm text-black-600 mb-4 line-clamp-2 hover:text-black">
                     {product.description}
                   </p>
                   
                   <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-magenta-600">
+                    <span className="text-2xl font-bold text-black-600">
                       {formatPrice(product.price)}
                     </span>
                     <Button 
