@@ -45,10 +45,11 @@ export const GenderModelDisplay = ({ selectedGender }: GenderModelDisplayProps) 
 
   return (
     <div 
-      className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-10"
+      className="fixed inset-0 bg-cover bg-center bg-no-repeat opacity-10 pointer-events-none"
       style={{
         backgroundImage: imageError ? 'none' : `url(${imageUrl})`,
-        backgroundColor: imageError ? '#f3f4f6' : 'transparent'
+        backgroundColor: imageError ? '#f3f4f6' : 'transparent',
+        zIndex: -1
       }}
     >
       {/* Hidden image element for loading and error handling */}
@@ -61,7 +62,7 @@ export const GenderModelDisplay = ({ selectedGender }: GenderModelDisplayProps) 
       />
       
       {imageError && (
-        <div className="absolute bottom-4 left-4 bg-white/80 rounded px-2 py-1 text-xs text-gray-600">
+        <div className="absolute bottom-4 left-4 bg-white/80 rounded px-2 py-1 text-xs text-gray-600 pointer-events-auto">
           Background image not found: {imageUrl}
         </div>
       )}
