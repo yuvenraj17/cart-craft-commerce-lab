@@ -44,14 +44,20 @@ export const GenderModelDisplay = ({ selectedGender }: GenderModelDisplayProps) 
   }
 
   return (
-    <div 
-      className="fixed inset-0 bg-cover bg-center bg-no-repeat opacity-10 pointer-events-none"
-      style={{
-        backgroundImage: imageError ? 'none' : `url(${imageUrl})`,
-        backgroundColor: imageError ? '#f3f4f6' : 'transparent',
-        zIndex: -1
-      }}
-    >
+    <>
+      {/* Background overlay */}
+      <div 
+        className="fixed inset-0 pointer-events-none"
+        style={{
+          backgroundImage: imageError ? 'none' : `url(${imageUrl})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.15,
+          zIndex: 1
+        }}
+      />
+      
       {/* Hidden image element for loading and error handling */}
       <img 
         src={imageUrl} 
@@ -62,10 +68,10 @@ export const GenderModelDisplay = ({ selectedGender }: GenderModelDisplayProps) 
       />
       
       {imageError && (
-        <div className="absolute bottom-4 left-4 bg-white/80 rounded px-2 py-1 text-xs text-gray-600 pointer-events-auto">
+        <div className="fixed bottom-4 left-4 bg-white/80 rounded px-2 py-1 text-xs text-gray-600 pointer-events-auto z-50">
           Background image not found: {imageUrl}
         </div>
       )}
-    </div>
+    </>
   );
 };
