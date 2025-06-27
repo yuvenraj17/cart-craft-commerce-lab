@@ -54,7 +54,7 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 232.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
     --card: 222.2 84% 4.9%;
@@ -78,7 +78,7 @@
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
+    --border: .2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
     --sidebar-background: 240 5.9% 10%;

@@ -257,12 +257,12 @@ const Index = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {products.map((product) => (
-              <Card key={product.id} className="group hover:shadow-lg transition-shadow duration-300">
+              <Card key={product.id} className="group hover:shadow-lg hover:text-purple-600 transition-shadow duration-300">
                 <div className="relative overflow-hidden rounded-t-lg">
                   <img 
                     src={product.image_url} 
                     alt={product.name}
-                    className="w-full h-64 object-cover group-hover:scale-105 brightness-3000"
+                    className="w-full h-64 object-cover group-hover:scale-95 brightness-3000"
                     onError={() => handleImageError(product.name, product.image_url)}
                     onLoad={() => handleImageLoad(product.name, product.image_url)}
                   />
@@ -283,8 +283,8 @@ const Index = () => {
                     </Button>
                   </div>
                   <div className="absolute top-3 left-3">
-                    <span className="bg-purple-600 text-white px-2 py-1 rounded-full text-xs font-medium">
-                      {product.category?.name}
+                    <span className="bg-red-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                      {product.name}
                     </span>
                   </div>
                 </div>
@@ -297,18 +297,18 @@ const Index = () => {
                       <span className="text-sm font-medium">{product.rating}</span>
                     </div>
                   </div>
-                  <CardDescription className="text-sm text-gray-500">
+                  <CardDescription className="text-sm text-gray-500 hover:text-red-600">
                     {product.brand}
                   </CardDescription>
                 </CardHeader>
 
                 <CardContent className="pt-0">
-                  <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                  <p className="text-sm text-black-600 mb-4 line-clamp-2 hover:text-blue-500">
                     {product.description}
                   </p>
                   
                   <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-purple-600">
+                    <span className="text-2xl font-bold text-magenta-600">
                       {formatPrice(product.price)}
                     </span>
                     <Button 
