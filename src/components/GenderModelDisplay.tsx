@@ -44,28 +44,27 @@ export const GenderModelDisplay = ({ selectedGender }: GenderModelDisplayProps) 
   }
 
   return (
-    <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-10 hidden lg:block">
-      <div className="bg-white rounded-lg shadow-lg p-2 border">
-        <div className="mb-2 text-xs text-gray-500 text-center">
-          Debug: Attempting to load {imageUrl}
+    <div 
+      className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-10"
+      style={{
+        backgroundImage: imageError ? 'none' : `url(${imageUrl})`,
+        backgroundColor: imageError ? '#f3f4f6' : 'transparent'
+      }}
+    >
+      {/* Hidden image element for loading and error handling */}
+      <img 
+        src={imageUrl} 
+        alt={selectedGender === 1 ? "Men's Collection Background" : "Women's Collection Background"}
+        className="hidden"
+        onError={handleImageError}
+        onLoad={handleImageLoad}
+      />
+      
+      {imageError && (
+        <div className="absolute bottom-4 left-4 bg-white/80 rounded px-2 py-1 text-xs text-gray-600">
+          Background image not found: {imageUrl}
         </div>
-        {imageError ? (
-          <div className="w-32 h-40 bg-gray-200 rounded-md flex items-center justify-center">
-            <p className="text-xs text-gray-500 text-center">Image not found<br/>{imageUrl}</p>
-          </div>
-        ) : (
-          <img 
-            src={imageUrl} 
-            alt={selectedGender === 1 ? "Men's Collection" : "Women's Collection"}
-            className="w-32 h-40 object-cover rounded-md transition-all duration-300 hover:scale-105"
-            onError={handleImageError}
-            onLoad={handleImageLoad}
-          />
-        )}
-        <p className="text-center text-sm font-medium mt-2 text-gray-700">
-          {selectedGender === 1 ? "Men's Collection" : "Women's Collection"}
-        </p>
-      </div>
+      )}
     </div>
   );
 };
