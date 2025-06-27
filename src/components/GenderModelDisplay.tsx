@@ -58,20 +58,6 @@ export const GenderModelDisplay = ({ selectedGender }: GenderModelDisplayProps) 
         }}
       />
       
-      {/* Hidden image element for loading and error handling */}
-      <img 
-        src={imageUrl} 
-        alt={selectedGender === 1 ? "Men's Collection Background" : "Women's Collection Background"}
-        className="hidden"
-        onError={handleImageError}
-        onLoad={handleImageLoad}
-      />
-      
-      {imageError && (
-        <div className="fixed bottom-4 left-4 bg-white/80 rounded px-2 py-1 text-xs text-gray-600 pointer-events-auto z-50">
-          Background image not found: {imageUrl}
-        </div>
-      )}
     </>
   );
 };
